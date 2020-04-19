@@ -1,0 +1,83 @@
+html{
+    width:100%;
+    height:100%;
+    margin:0;
+}
+
+body{
+	margin-left:5%;
+    margin-right:5%;
+    width:90%;
+    height:100%
+	background: #525252;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #3d72b4, #525252);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #3d72b4, #525252); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color:white;
+    font-family:monospace;
+    font-size:20px;
+}
+
+header{
+    
+    display:flex;
+    justify-content: space-between;
+    border-bottom:solid;
+    border-width:1px;
+    
+}
+
+button{
+    font-family:monospace;
+    font-size:24px;
+    width:100%;
+    height:60px;
+    border:solid;
+    border-width:1px;
+    margin-bottom:1px;
+    margin-top:1px;
+    border-color:white;
+    border-radius:10px;
+    background:none;
+    color:white;
+}
+
+#message{
+    margin-top:30px;
+    height:50px;
+    width:100%;
+    text-align:center;
+    font-size:40px;
+}
+
+#random_container{
+    display:flex;
+    justify-content: space-between;
+    font-size:40px;
+    margin-top:30px;
+    width:100%;
+    height:50px;
+    border-bottom:solid;
+    border-color:white;
+    border-width:1px;
+}
+
+#random1{
+    width:50%;
+    text-align:center;
+}
+
+#random2{
+    width:50%;
+    text-align:center;
+}
+
+#button_container{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+
+}
+
+
+
+
