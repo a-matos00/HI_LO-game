@@ -1,7 +1,11 @@
 var money = 100;
 var multiplier = 2;
 var stake = 0;
+var total_tries = 0;
+var current_tries = 0;
 
+total_tries = localStorage.getItem("total_tries");
+current_tries = localStorage.getItem("current_tries");
 stake = localStorage.getItem("stake");
 money = localStorage.getItem("money");
 multiplier = localStorage.getItem("multiplier");
@@ -16,6 +20,7 @@ document.getElementById("multi").style.visibility = "hidden";
 
 $("#start").click(function ()
 {
+    //$("body").css("background", "linear-gradient(to bottom, red, #525252)");
     money -= 10;
     random1 = Math.floor(Math.random() * 10) + 1;
     document.getElementById("random1").innerHTML = random1;
@@ -30,7 +35,8 @@ $("#new_game").click(function ()
     money = 100;
     multiplier = 2;
     stake = 0;
-    
+    current_tries = 0;
+     localStorage.setItem("current_tries", current_tries);
     document.getElementById("start").style.visibility = "visible";
     document.getElementById("low").style.visibility = "hidden";
     document.getElementById("high").style.visibility = "hidden";
@@ -49,6 +55,7 @@ $("#new_game").click(function ()
 
 $("#low").click(function low()
 {
+    
     random2 = Math.floor(Math.random() * 10) + 1;
     document.getElementById("random2").innerHTML = random2;
     
@@ -61,6 +68,7 @@ $("#low").click(function low()
     }
     
     else if( random2 < random1){
+        
         document.getElementById("message").innerHTML = "success";
         stake = 10 * multiplier;
         document.getElementById("multi").style.visibility = "visible";
@@ -76,6 +84,10 @@ $("#low").click(function low()
         document.getElementById("tryagain").innerHTML = "try again";
         
     }
+    total_tries++;
+    current_tries++;
+    localStorage.setItem("total_tries", total_tries);
+     localStorage.setItem("current_tries", current_tries);
     document.getElementById("money").innerHTML = money;
     localStorage.setItem("money", money);
 });
@@ -109,6 +121,10 @@ $("#high").click(function low()
         document.getElementById("tryagain").innerHTML = "try again";
         
     }
+    total_tries++;
+    current_tries++;
+    localStorage.setItem("total_tries", total_tries);
+    localStorage.setItem("current_tries", current_tries);
     document.getElementById("money").innerHTML = money;
     localStorage.setItem("money", money);
 });
@@ -118,6 +134,7 @@ $("#tryagain").click(function()
     multiplier = 2;
     money += stake;
     stake = 0;
+    
     document.getElementById("stake").innerHTML = stake;
     document.getElementById("money").innerHTML = money;
     document.getElementById("multiplier").innerHTML = multiplier;
@@ -130,6 +147,8 @@ $("#tryagain").click(function()
     document.getElementById("multi").style.visibility = "hidden";
     localStorage.setItem("multiplier", multiplier);
     localStorage.setItem("money", money);
+    localStorage.setItem("stake", stake);
+    
     
 });
 
