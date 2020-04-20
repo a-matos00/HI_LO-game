@@ -10,20 +10,39 @@
 </head>
 
 <body>
-    <header>
-    <div id = "money"></div>
-    <div id = "multiplier"></div>
-    </header>
-    <div id = "stake"></div>
-
-    <div id = "message">PRESS START</div>
+    <div id ="stats_page">
     
-    <div id ="random_container">
+    <header>
+        <div id = "title">Statistics</div>
+    </header>
+
+    <div id = "stats">
+        <div class = "stats" id = "current_tries">current_tries:</div>
+        <div class = "stats" id = "success_rate">success rate:</div>
+        <div class = "stats" id = "total_tries">total tries:</div>
+        <div class = "stats" id = "correct_guesses">correct_guesses:</div>
+        <div class = "stats" id = "wrong_guesses">wrong guesses:</div>
+        <div class = "stats" id = "highest_multiplier">highest multiplier:</div>
+        <div class = "stats" id = "highscore">highscore:</div>
+    </div>
+    </div>
+    
+    <div id = index_page>
+    <header id = "header">
+    <div class = "index" id = "money"></div>
+    <div class = "index" id = "multiplier"></div>
+    </header>
+    <main id="main">
+    <div class = "index" id = "stake"></div>
+
+    <div class = "index" id = "message">PRESS START</div>
+    
+    <div class = "index" id ="random_container">
         <div id = "random1" ></div>
         <div id = "random2" ></></div>
     </div>
 
-    <div id = "button_container">
+    <div  class = "index" id = "button_container">
     <button id = "start">START</button>
     
     <button id = "high">HIGH</button>
@@ -31,12 +50,17 @@
    
     <button id = "tryagain">try again</button>
     <button id = "multi">multi</button>
-    </div>
     <button id = "new_game">NEW GAME</button>
-    <button id = "stats" onclick="location.href='stats.html'">STATS</button>
+    <button id = "stats_button">STATS</button>
+    </div>
+    </main>
+    </div>
+
+ 
+<script src="guess.js"></script>
+
+<script type="text/javascript" src="cordova.js"></script>
 </body>
 
-<script src="guess.js"></script>
-<script src = "stats.js"></script>
-<script type="text/javascript" src="cordova.js"></script>
+
 </html> 
