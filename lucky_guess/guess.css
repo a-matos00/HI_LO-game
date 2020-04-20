@@ -81,6 +81,20 @@ button{
 
 
 
+#index_page{
+   
+    z-index:1;
+
+}
+
+#stats_page{
+    position:absolute;
+    visibility:hidden;
+    
+    z-index:0;
+}
+    
+
 
 
 
