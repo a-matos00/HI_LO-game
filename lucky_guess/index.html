@@ -5,15 +5,38 @@
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
 <link rel="stylesheet" href="guess.css">
+<link rel="stylesheet" href="stats.css">
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 </head>
 
 <body>
-    <header>
+    <div id ="stats_page">
+    
+    <header id = "stats_header">
+        <div id = "title">Statistics</div>
+    </header>
+
+    <div id = "stats">
+        <div class = "stats" id = "total_tries">Total tries:</div>
+        <div class = "stats" id = "total_wins">total correct guesses:</div>
+        <div class = "stats" id = "total_fails">total wrong guesses:</div>
+        <div class = "stats" id = "current_tries">Current tries:</div> 
+        <div class = "stats" id = "current_wins">current wins:</div> 
+        <div class = "stats" id = "current_fails">current fails:</div> 
+        <div class = "stats" id = "success_rate">Success_rate:</div> 
+
+    </div>
+    <button id = "index_button">back to game</button>
+    </div>
+    
+    <div id = index_page>
+    <main class = "index_static" id="main">
+    <header class = "index_static" id = "header">
     <div id = "money"></div>
     <div id = "multiplier"></div>
     </header>
+    
     <div id = "stake"></div>
 
     <div id = "message">PRESS START</div>
@@ -22,20 +45,27 @@
         <div id = "random1" ></div>
         <div id = "random2" ></></div>
     </div>
+    </main>
 
     <div id = "button_container">
     <button id = "start">START</button>
     
-    <button id = "high">HIGH</button>
-    <button id = "low">LOW</button>
+    <button class = "hi_lo" id = "high">HIGH</button>
+    <button class = "hi_lo" id = "low">LOW</button>
    
-    <button id = "tryagain">try again</button>
-    <button id = "multi">multi</button>
-    </div>
+    <button class = "try_multi" id = "tryagain">try again</button>
+    <button class = "try_multi" id = "multi">multi</button>
     <button id = "new_game">NEW GAME</button>
-    <button id = "stats" onclick="location.href='stats.html'">STATS</button>
+    <button id = "stats_button">STATS</button>
+    </div>
+    
+    </div>
+
+ 
+<script src="guess.js"></script>
+
+<script type="text/javascript" src="cordova.js"></script>
 </body>
 
-<script src="guess.js"></script>
-<script type="text/javascript" src="cordova.js"></script>
+
 </html> 
