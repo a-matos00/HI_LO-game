@@ -5,6 +5,7 @@
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
 <link rel="stylesheet" href="guess.css">
+<link rel="stylesheet" href="stats.css">
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 </head>
@@ -12,18 +13,22 @@
 <body>
     <div id ="stats_page">
     
-    <header>
+    <header id = "stats_header">
         <div id = "title">Statistics</div>
     </header>
 
     <div id = "stats">
-        <div class = "stats" id = "current_tries">current_tries:</div>
-        <div class = "stats" id = "success_rate">success rate:</div>
-        <div class = "stats" id = "total_tries">total tries:</div>
-        <div class = "stats" id = "correct_guesses">correct_guesses:</div>
-        <div class = "stats" id = "wrong_guesses">wrong guesses:</div>
-        <div class = "stats" id = "highest_multiplier">highest multiplier:</div>
-        <div class = "stats" id = "highscore">highscore:</div>
+        <div class = "stats" id = "total_tries">Total tries:</div>
+        <div class = "stats" id = "total_wins">total correct guesses:</div>
+        <div class = "stats" id = "total_fails">total wrong guesses:</div>
+        <div class = "stats" id = "current_tries">Current tries:</div> 
+        <div class = "stats" id = "current_wins">current wins:</div> 
+        <div class = "stats" id = "current_fails">current fails:</div> 
+        <div class = "stats" id = "success_rate">Success rate:</div> 
+        <div class = "stats" id = "total_success_rate">All time success rate:</div> 
+        <div class = "stats" id = "current_highest_mutiplier">Current game highest multiplier:</div> 
+        <div class = "stats" id = "total_highest_mutiplier">All time highest multiplier:</div>
+
     </div>
     <button id = "index_button">back to game</button>
     </div>
