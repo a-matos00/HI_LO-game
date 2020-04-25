@@ -25,6 +25,9 @@ header{
     border-width:1px;
     
 }
+button:  { 
+    outline: none; 
+}
 
 button{
     font-family:monospace;
@@ -39,6 +42,8 @@ button{
     border-radius:10px;
     background:none;
     color:white;
+     outline: none;
+   
 }
 
 #message{
@@ -81,18 +86,14 @@ button{
 
 
 
+
 #index_page{
    
     z-index:1;
 
 }
 
-#stats_page{
-    position:absolute;
-    visibility:hidden;
-    
-    z-index:0;
-}
+
     
 
 
