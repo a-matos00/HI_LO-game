@@ -14,30 +14,15 @@ var total_success_rate = 0;
 var highest_multiplier = 2;
 var total_highest_multiplier = 2;
 
-var control = localStorage.getItem("control"); 
-if( control == null){
-    control = 0;
+var control = localStorage.getItem("control");
+document.write(control);
+if(control == null){ 
+    control = 1;  
+    localStorage.setItem("control", control);  
+    document.getElementById("start").style.visibility = "hidden";
+    
+
 }
-
- 
-if(control == 0){     //if this is the first game on a new device
-control = 1;
-localStorage.setItem("control", controls);
-
-localStorage.setItem("highest_multiplier", highest_multiplier);                //VARIABLES
-localStorage.setItem("control", control);
-
-document.getElementById("money").innerHTML = "money " + money;                       //HTML
-document.getElementById("stake").innerHTML = "+" + stake;
-document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
-
-document.getElementById("low").style.visibility = "hidden";        //CSS
-document.getElementById("high").style.visibility = "hidden";
-document.getElementById("tryagain").style.visibility = "hidden";
-document.getElementById("multi").style.visibility = "hidden";
-document.getElementById("start").style.visibility = "hidden"; 
-}
-else{
 
 total_tries = localStorage.getItem("total_tries");           //get values from local storage on load
 current_tries = localStorage.getItem("current_tries");
@@ -60,7 +45,7 @@ document.getElementById("low").style.visibility = "hidden";        //CSS
 document.getElementById("high").style.visibility = "hidden";
 document.getElementById("tryagain").style.visibility = "hidden";
 document.getElementById("multi").style.visibility = "hidden";
-}
+
 
 
 if(money == 0){                               //IF you exited the app after game over
