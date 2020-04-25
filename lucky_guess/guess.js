@@ -13,14 +13,16 @@ var success_rate = 0;
 var total_success_rate = 0;
 var highest_multiplier = 2;
 var total_highest_multiplier = 2;
-
 var control = localStorage.getItem("control");
 
 if(control == null || NaN || undefined){                    //FIRST GAME CHECK
     control++;                                                          //VARIABLES
+
+    document.getElementById("message").innerHTML = "Start New Game";   //HTML
     
     document.getElementById("start").style.visibility = "hidden";     //CSS
 
+    localStorage.setItem("multiplier", multiplier);
     localStorage.setItem("control", control);                    //STORAGE
     localStorage.setItem("money", money);
     localStorage.setItem("stake", stake);
@@ -29,6 +31,7 @@ if(control == null || NaN || undefined){                    //FIRST GAME CHECK
     localStorage.setItem("total_wins", total_wins);
     localStorage.setItem("current_wins", current_wins);
     localStorage.setItem("total_fails", total_fails);
+    localStorage.setItem("current_fails", current_fails);
     localStorage.setItem("success_rate", success_rate);
     localStorage.setItem("total_success_rate", total_success_rate);
     localStorage.setItem("highest_multiplier", highest_multiplier);
@@ -80,6 +83,7 @@ $("#start").click(function start()
 
         document.getElementById("random1").innerHTML = random1;          //HTML
         document.getElementById("money").innerHTML = money;
+        document.getElementById("message").innerHTML = "Higher or lower?";
     
         document.getElementById("start").style.visibility = "hidden";   //CSS
         document.getElementById("low").style.visibility = "visible";
@@ -101,11 +105,13 @@ $("#new_game").click(function ()
     control2 = 1;
     
     document.getElementById("money").innerHTML = "money " + money;     //HTML
-    document.getElementById("multiplier").innerHTML = multiplier;
+    document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
     document.getElementById("random1").innerHTML = "";
     document.getElementById("random2").innerHTML = "";
     document.getElementById("message").innerHTML = "message";
     document.getElementById("stake").innerHTML = "stake " + stake;
+    document.getElementById("message").innerHTML = "Press Start";
+    
     
     document.getElementById("start").style.visibility = "visible";   //CSS
     document.getElementById("low").style.visibility = "hidden";
@@ -129,6 +135,7 @@ $("#low").click(function low()
     random2 = Math.floor(Math.random() * 10) + 1;                      //VARIABLES
 
     document.getElementById("random2").innerHTML = random2;             //HTML
+    document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
     
     document.getElementById("tryagain").style.visibility = "visible";     //CSS
     $(".hi_lo").css("visibility","hidden");
@@ -197,6 +204,7 @@ $("#high").click(function high()
     random2 = Math.floor(Math.random() * 10) + 1;                      //VARIABLES
 
     document.getElementById("random2").innerHTML = random2;             //HTML
+    document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
     
     document.getElementById("tryagain").style.visibility = "visible";     //CSS
     $(".hi_lo").css("visibility","hidden");
@@ -269,7 +277,7 @@ $("#tryagain").click(function()
     
     document.getElementById("stake").innerHTML = stake;        //HTML
     document.getElementById("money").innerHTML = money;
-    document.getElementById("multiplier").innerHTML = multiplier;
+    document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
     document.getElementById("random1").innerHTML = "";
     document.getElementById("random2").innerHTML = "";
     document.getElementById("message").innerHTML = "Message";
@@ -292,9 +300,21 @@ $("#multi").click(function()
         multi();
         return;
     }
+    else{
     
     multiplier *=2;                                            //VARIABLES
     localStorage.setItem("multiplier", multiplier);
+    switch(multiplier){
+        case 4: $("body").css("background", "linear-gradient(35deg,cyan, #525252)");
+                break;
+        case 8:$("body").css("background", "linear-gradient(35deg,lime, #525252)");
+                break;
+        case 16:$("body").css("background", "linear-gradient(35deg,orange, #525252)");
+                break;
+        case 32:$("body").css("background", "linear-gradient(35deg,yellow, #525252)");
+                break;
+    }
+    
     if( multiplier > highest_multiplier){
         highest_multiplier = multiplier;
         localStorage.setItem("highest_multiplier", highest_multiplier);
@@ -306,14 +326,14 @@ $("#multi").click(function()
     }
     
     
-    document.getElementById("multiplier").innerHTML = multiplier;     //HTML
+    document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";     //HTML
     document.getElementById("random1").innerHTML = random1;
     document.getElementById("random2").innerHTML = "";
     document.getElementById("money").innerHTML = money; 
 
     $(".hi_lo").css("visibility","visible");         //CSS
     $(".try_multi").css("visibility","hidden");
-    
+   }
     
 });
 
@@ -336,14 +356,14 @@ $("#stats_button").click(function()
     $("#stats_page").css("position", "relative");
     $("#stats_page").css("z-index", "1");
 
-    $("#current_tries").text("Current tries " + current_tries);  //HTML
-    $("#total_tries").text("Total tries " + total_tries);
-    $("#total_wins").text("Total wins " + total_wins);
-    $("#total_fails").text("Total fails " + total_fails);
-    $("#current_wins").text("Current wins " + current_wins);
-    $("#current_fails").text("Current fails " + current_fails);
-    $("#success_rate").text("Success rate " + success_rate + "%");
-    $("#total_success_rate").text("All time success rate " + total_success_rate + "%");
+    $("#current_tries").text("Current tries: " + current_tries);  //HTML
+    $("#total_tries").text("Total tries: " + total_tries);
+    $("#total_wins").text("Total wins: " + total_wins);
+    $("#total_fails").text("Total fails: " + total_fails);
+    $("#current_wins").text("Current wins: " + current_wins);
+    $("#current_fails").text("Current fails: " + current_fails);
+    $("#success_rate").text("Success rate: " + success_rate + "%");
+    $("#total_success_rate").text("All time success rate: " + total_success_rate + "%");
     $("#current_highest_mutiplier").text("Current highest multiplier: " + highest_multiplier );
     $("#total_highest_mutiplier").text("All time highest multiplier: " + total_highest_multiplier );
 
