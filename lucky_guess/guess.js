@@ -13,15 +13,13 @@ var success_rate = 0;
 var total_success_rate = 0;
 var highest_multiplier = 2;
 var total_highest_multiplier = 2;
+var control3 = localStorage.getItem("control3");
 
-var control = localStorage.getItem("control");
-document.write(control);
-if(control == null){ 
-    control = 1;  
-    localStorage.setItem("control", control);  
-    document.getElementById("start").style.visibility = "hidden";
-    
-
+if(control3 == null || NaN || undefined){
+    control3 = 1; 
+    document.getElementById("start").style.visibility = "hidden";  
+    localStorage.setItem("control3", control3);
+        
 }
 
 total_tries = localStorage.getItem("total_tries");           //get values from local storage on load
