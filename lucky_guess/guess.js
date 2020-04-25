@@ -1,5 +1,5 @@
 
-
+var control2 = 0; //new game control
 var money = 100;                  //GLOBAL VARIABLES
 var multiplier = 2;
 var stake = 0;
@@ -14,15 +14,28 @@ var total_success_rate = 0;
 var highest_multiplier = 2;
 var total_highest_multiplier = 2;
 
-var control3 = localStorage.getItem("control4");
+var control = localStorage.getItem("control");
 
-if(control3 == null || NaN || undefined){
-    control3 = 1; 
-    document.getElementById("start").style.visibility = "hidden";  
-    localStorage.setItem("control4", control3);
-            
+if(control == null || NaN || undefined){                    //FIRST GAME CHECK
+    control++;                                                          //VARIABLES
+    
+    document.getElementById("start").style.visibility = "hidden";     //CSS
+
+    localStorage.setItem("control", control);                    //STORAGE
+    localStorage.setItem("money", money);
+    localStorage.setItem("stake", stake);
+    localStorage.setItem("total_tries", total_tries);
+    localStorage.setItem("current_tries", current_tries);
+    localStorage.setItem("total_wins", total_wins);
+    localStorage.setItem("current_wins", current_wins);
+    localStorage.setItem("total_fails", total_fails);
+    localStorage.setItem("success_rate", success_rate);
+    localStorage.setItem("total_success_rate", total_success_rate);
+    localStorage.setItem("highest_multiplier", highest_multiplier);
+    localStorage.setItem("total_highest_multiplier", total_highest_multiplier);
+
 }
-
+control2 = localStorage.getItem("control2");
 total_tries = localStorage.getItem("total_tries");           //get values from local storage on load
 current_tries = localStorage.getItem("current_tries");
 total_wins = localStorage.getItem("total_wins");
@@ -78,13 +91,14 @@ $("#start").click(function start()
 
 $("#new_game").click(function ()
 {
-    money = 10;                                                    //VARIABLES
+    money = 100;                                                    //VARIABLES
     multiplier = 2;
     stake = 0;
     current_tries = 0;
     current_wins = 0;
     current_fails = 0;
     highest_multiplier = 2;
+    control2 = 1;
     
     document.getElementById("money").innerHTML = "money " + money;     //HTML
     document.getElementById("multiplier").innerHTML = multiplier;
@@ -106,6 +120,7 @@ $("#new_game").click(function ()
     localStorage.setItem("current_tries", current_tries); 
     localStorage.setItem("current_wins", current_wins);
     localStorage.setItem("current_fails", current_fails);
+    localStorage.setItem("control2",control2);
 });
 
 $("#low").click(function low()
@@ -284,6 +299,11 @@ $("#multi").click(function()
         highest_multiplier = multiplier;
         localStorage.setItem("highest_multiplier", highest_multiplier);
     }
+
+    if( highest_multiplier > total_highest_multiplier){
+        total_highest_multiplier = highest_multiplier;
+         localStorage.setItem("total_highest_multiplier", total_highest_multiplier);
+    }
     
     
     document.getElementById("multiplier").innerHTML = multiplier;     //HTML
@@ -332,11 +352,16 @@ $("#stats_button").click(function()
 
 $("#index_button").click(function()
 {   
-    if(money != 0){                                 //START BUTTON IS NOT AVALIABLE IF THE GAME IS OVER
+    control++;
+    if(money != 0 || money < 0){                                 //START BUTTON IS NOT AVALIABLE IF THE GAME IS OVER
         $("#start").css("visibility","visible");                 
         
     }
     else{
+        $("#start").css("visibility","hidden");
+    }
+
+    if( control2 != 1){
         $("#start").css("visibility","hidden");
     }
 
