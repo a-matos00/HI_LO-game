@@ -14,6 +14,14 @@ var total_success_rate = 0;
 var highest_multiplier = 2;
 var total_highest_multiplier = 2;
 var control = localStorage.getItem("control");
+abc = setInterval(funkcija,100);
+var x = 180;
+var background = "#3d72b4";
+function funkcija(){
+    
+    x+=5;
+    $("body").css("background", 'linear-gradient('+ x + 'deg,'+ background + ', #525252)');
+}
 
 if(control == null || NaN || undefined){                    //FIRST GAME CHECK
     control++;                                                          //VARIABLES
@@ -71,7 +79,7 @@ if(money == 0){                               //IF you exited the app after game
 $("#start").click(function start()
 {
 
-        random1 = Math.floor(Math.random() * 10) + 1;               
+        random1 = Math.floor(Math.random() * 10) + 1;                //VARIABLES
     
         if( (random1 == 1) || (random1 == 10)){
         start();
@@ -88,6 +96,7 @@ $("#start").click(function start()
         document.getElementById("start").style.visibility = "hidden";   //CSS
         document.getElementById("low").style.visibility = "visible";
         document.getElementById("high").style.visibility = "visible";
+        document.getElementById("message").style.fontSize = "35px";
     
     
     
@@ -275,12 +284,18 @@ $("#tryagain").click(function()
     money += stake;
     stake = 0;
     
+    clearInterval(abc);
+    abc = 0;
+    background = "#3d72b4";
+    abc = setInterval(funkcija,100);
+
+
     document.getElementById("stake").innerHTML = stake;        //HTML
     document.getElementById("money").innerHTML = money;
     document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
     document.getElementById("random1").innerHTML = "";
     document.getElementById("random2").innerHTML = "";
-    document.getElementById("message").innerHTML = "Message";
+    document.getElementById("message").innerHTML = "Press start";
     document.getElementById("tryagain").innerHTML = "try again";
 
     document.getElementById("start").style.visibility = "visible";       //CSS
@@ -295,6 +310,8 @@ $("#tryagain").click(function()
 
 $("#multi").click(function()
 {
+
+   
     random1 = Math.floor(Math.random() * 10) + 1;
     if( (random1 == 1) || (random1 == 10)){
         multi();
@@ -305,15 +322,24 @@ $("#multi").click(function()
     multiplier *=2;                                            //VARIABLES
     localStorage.setItem("multiplier", multiplier);
     switch(multiplier){
-        case 4: $("body").css("background", "linear-gradient(35deg,cyan, #525252)");
+        case 4: clearInterval(abc);
+                abc = 0;
+                background = "cyan";
                 break;
-        case 8:$("body").css("background", "linear-gradient(35deg,lime, #525252)");
+        case 8: clearInterval(abc);
+                abc = 0;
+                background = "lime";
                 break;
-        case 16:$("body").css("background", "linear-gradient(35deg,orange, #525252)");
+        case 16:clearInterval(abc);
+                abc = 0;
+                background = "orange";
                 break;
-        case 32:$("body").css("background", "linear-gradient(35deg,yellow, #525252)");
+        case 32:clearInterval(abc);
+                abc = 0;
+                background = "yellow";
                 break;
     }
+    abc = setInterval(funkcija,100);
     
     if( multiplier > highest_multiplier){
         highest_multiplier = multiplier;
