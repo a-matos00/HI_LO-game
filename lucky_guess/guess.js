@@ -40,14 +40,35 @@ if(money == 0){                               //IF you exited the app after game
     $("#message").text("Game over");
 }
 
-$("#start").click(function start()
+$("#start").click(function()
 {
-    random1 = Math.floor(Math.random() * 10) + 1;               
+    setTimeout(start, 200);
+    var abc = setInterval(color,10);
+        
+        a = 0;
+        r = 255;
+    function color()
+    {
+        if( a == 1){
+            clearInterval(abc);
+        }
+        
+        a+=0.05;
+        r-=20;
+        
+        document.getElementById("start").style.backgroundColor = 'rgba(255,255,255,' + a + ')';
+        document.getElementById("start").style.color = 'rgb(' + r + ',255,255)';
+        
+    }
+    function start()
+    {
     
-    if( (random1 == 1) || (random1 == 10)){
+        random1 = Math.floor(Math.random() * 10) + 1;               
+    
+        if( (random1 == 1) || (random1 == 10)){
         start();
         return;
-    }
+        }
     
         money -= 10;
    
@@ -58,6 +79,7 @@ $("#start").click(function start()
         document.getElementById("start").style.visibility = "hidden";   //CSS
         document.getElementById("low").style.visibility = "visible";
         document.getElementById("high").style.visibility = "visible";
+    }
     
     
 });
