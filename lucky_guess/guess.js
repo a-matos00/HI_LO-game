@@ -1,4 +1,5 @@
 
+
 var money = 100;                  //GLOBAL VARIABLES
 var multiplier = 2;
 var stake = 0;
@@ -12,6 +13,31 @@ var success_rate = 0;
 var total_success_rate = 0;
 var highest_multiplier = 2;
 var total_highest_multiplier = 2;
+
+var control = localStorage.getItem("control"); 
+if( control == null){
+    control = 0;
+}
+
+ 
+if(control == 0){     //if this is the first game on a new device
+control = 1;
+localStorage.setItem("control", controls);
+
+localStorage.setItem("highest_multiplier", highest_multiplier);                //VARIABLES
+localStorage.setItem("control", control);
+
+document.getElementById("money").innerHTML = "money " + money;                       //HTML
+document.getElementById("stake").innerHTML = "+" + stake;
+document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
+
+document.getElementById("low").style.visibility = "hidden";        //CSS
+document.getElementById("high").style.visibility = "hidden";
+document.getElementById("tryagain").style.visibility = "hidden";
+document.getElementById("multi").style.visibility = "hidden";
+document.getElementById("start").style.visibility = "hidden"; 
+}
+else{
 
 total_tries = localStorage.getItem("total_tries");           //get values from local storage on load
 current_tries = localStorage.getItem("current_tries");
@@ -34,35 +60,17 @@ document.getElementById("low").style.visibility = "hidden";        //CSS
 document.getElementById("high").style.visibility = "hidden";
 document.getElementById("tryagain").style.visibility = "hidden";
 document.getElementById("multi").style.visibility = "hidden";
+}
+
 
 if(money == 0){                               //IF you exited the app after game over
     $("#start").css("visibility","hidden");
     $("#message").text("Game over");
 }
 
-$("#start").click(function()
+$("#start").click(function start()
 {
-    setTimeout(start, 200);
-    var abc = setInterval(color,10);
-        
-        a = 0;
-        r = 255;
-    function color()
-    {
-        if( a == 1){
-            clearInterval(abc);
-        }
-        
-        a+=0.05;
-        r-=20;
-        
-        document.getElementById("start").style.backgroundColor = 'rgba(255,255,255,' + a + ')';
-        document.getElementById("start").style.color = 'rgb(' + r + ',255,255)';
-        
-    }
-    function start()
-    {
-    
+
         random1 = Math.floor(Math.random() * 10) + 1;               
     
         if( (random1 == 1) || (random1 == 10)){
@@ -79,7 +87,7 @@ $("#start").click(function()
         document.getElementById("start").style.visibility = "hidden";   //CSS
         document.getElementById("low").style.visibility = "visible";
         document.getElementById("high").style.visibility = "visible";
-    }
+    
     
     
 });
