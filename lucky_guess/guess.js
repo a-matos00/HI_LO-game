@@ -20,12 +20,8 @@ if(control3 == null || NaN || undefined){
     control3 = 1; 
     document.getElementById("start").style.visibility = "hidden";  
     localStorage.setItem("control4", control3);
-    
-        
+            
 }
-
-else{
-
 
 total_tries = localStorage.getItem("total_tries");           //get values from local storage on load
 current_tries = localStorage.getItem("current_tries");
@@ -39,7 +35,6 @@ multiplier = localStorage.getItem("multiplier");
 highest_multiplier = localStorage.getItem("highest_multiplier");
 total_highest_multiplier = localStorage.getItem("total_highest_multiplier");
 
-}
 
 document.getElementById("money").innerHTML = "money " + money;                       //HTML
 document.getElementById("stake").innerHTML = "+" + stake;
@@ -49,6 +44,7 @@ document.getElementById("low").style.visibility = "hidden";        //CSS
 document.getElementById("high").style.visibility = "hidden";
 document.getElementById("tryagain").style.visibility = "hidden";
 document.getElementById("multi").style.visibility = "hidden";
+
 
 
 if(money == 0){                               //IF you exited the app after game over
