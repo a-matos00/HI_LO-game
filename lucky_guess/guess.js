@@ -13,10 +13,10 @@ var success_rate = 0;
 var total_success_rate = 0;
 var highest_multiplier = 2;
 var total_highest_multiplier = 2;
-var control = localStorage.getItem("control");
+var control = localStorage.getItem("control3322");
 
 var angle = 180;
-var background_color = total_fails = localStorage.getItem("background_color");
+var background_color = localStorage.getItem("background_color");
 
 
 
