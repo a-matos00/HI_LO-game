@@ -95,7 +95,8 @@ $("#start").click(function start()
    
 
         document.getElementById("random1").innerHTML = random1;          //HTML
-        document.getElementById("money").innerHTML = money;
+        document.getElementById("money").innerHTML = "money " + money;
+        document.getElementById("stake").innerHTML = "+" + stake;
         document.getElementById("message").innerHTML = "Higher or lower?";
     
         document.getElementById("start").style.visibility = "hidden";   //CSS
@@ -157,6 +158,7 @@ $("#low").click(function low()
     document.getElementById("random2").innerHTML = random2;             //HTML
     document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
     
+    
     document.getElementById("tryagain").style.visibility = "visible";     //CSS
     $(".hi_lo").css("visibility","hidden");
     
@@ -207,7 +209,8 @@ $("#low").click(function low()
     current_tries++;
     total_tries++;
     
-    document.getElementById("money").innerHTML = money;         //HTML
+    document.getElementById("money").innerHTML = "money " + money;
+     document.getElementById("stake").innerHTML = "+" + stake;         //HTML
 
      localStorage.setItem("total_tries", total_tries);        //STORAGE
      localStorage.setItem("current_tries", current_tries);
@@ -225,6 +228,7 @@ $("#high").click(function high()
 
     document.getElementById("random2").innerHTML = random2;             //HTML
     document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
+    
     
     document.getElementById("tryagain").style.visibility = "visible";     //CSS
     $(".hi_lo").css("visibility","hidden");
@@ -276,7 +280,8 @@ $("#high").click(function high()
     current_tries++;
     total_tries++;
     
-    document.getElementById("money").innerHTML = money;         //HTML
+     document.getElementById("money").innerHTML = "money " + money;
+     document.getElementById("stake").innerHTML = "+" + stake;         //HTML
 
      localStorage.setItem("total_tries", total_tries);        //STORAGE
      localStorage.setItem("current_tries", current_tries);
@@ -302,8 +307,8 @@ $("#tryagain").click(function()
     localStorage.setItem("background_color", background_color);
 
 
-    document.getElementById("stake").innerHTML = stake;        //HTML
-    document.getElementById("money").innerHTML = money;
+    document.getElementById("money").innerHTML = "money " + money;        //HTML
+    document.getElementById("stake").innerHTML = "+" + stake;
     document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
     document.getElementById("random1").innerHTML = "";
     document.getElementById("random2").innerHTML = "";
@@ -363,6 +368,10 @@ $("#multi").click(function multi()
                 rotate_interval = 0;
                 background_color = "#ffa8a8";
                 break;
+        default:clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "#ffa8a8";
+                break;
     }
     rotate_interval = setInterval(rotate_background,100);
     localStorage.setItem("background_color", background_color);
@@ -381,7 +390,10 @@ $("#multi").click(function multi()
     document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";     //HTML
     document.getElementById("random1").innerHTML = random1;
     document.getElementById("random2").innerHTML = "";
-    document.getElementById("money").innerHTML = money; 
+    document.getElementById("money").innerHTML = "money " + money;
+    document.getElementById("stake").innerHTML = "+" + stake;
+    document.getElementById("message").innerHTML = "multiplier "+ multiplier + "X";
+    
 
     $(".hi_lo").css("visibility","visible");         //CSS
     $(".try_multi").css("visibility","hidden");
