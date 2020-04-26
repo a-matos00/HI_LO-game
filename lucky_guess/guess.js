@@ -13,7 +13,7 @@ var success_rate = 0;
 var total_success_rate = 0;
 var highest_multiplier = 2;
 var total_highest_multiplier = 2;
-var control = localStorage.getItem("control3322");
+var control = localStorage.getItem("control");
 
 var angle = 180;
 var background_color = localStorage.getItem("background_color");
@@ -344,11 +344,24 @@ $("#multi").click(function multi()
                 break;
         case 16:clearInterval(rotate_interval);
                 rotate_interval = 0;
-                background_color = "orange";
+                background_color = "red";
                 break;
         case 32:clearInterval(rotate_interval);
                 rotate_interval = 0;
+                background_color = "orange";
+                break;
+         case 64:clearInterval(rotate_interval);
+                rotate_interval = 0;
                 background_color = "yellow";
+                break;
+         case 128:clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "#ff0385";
+                break;
+
+         case 256:clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "#ffa8a8";
                 break;
     }
     rotate_interval = setInterval(rotate_background,100);
