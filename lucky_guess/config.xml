@@ -17,7 +17,7 @@
         Name Of The Author
     </author>
 
-<gap:plugin name = "org.apache.cordova.splashscreen" />
+
 <preference name="SplashScreenDelay" value="3000" />
  <icon src="icon.png" />
  <splash src="splash.png" />
