@@ -14,22 +14,21 @@ var total_success_rate = 0;
 var highest_multiplier = 2;
 var total_highest_multiplier = 2;
 var control = localStorage.getItem("control");
-abc = setInterval(funkcija,100);
-var x = 180;
-var background = "#3d72b4";
-function funkcija(){
-    
-    x+=5;
-    $("body").css("background", 'linear-gradient('+ x + 'deg,'+ background + ', #525252)');
-}
+
+var angle = 180;
+var background_color = total_fails = localStorage.getItem("background_color");
+
+
 
 if(control == null || NaN || undefined){                    //FIRST GAME CHECK
     control++;                                                          //VARIABLES
-
+    background_color = "#3d72b4";
+    
     document.getElementById("message").innerHTML = "Start New Game";   //HTML
     
     document.getElementById("start").style.visibility = "hidden";     //CSS
 
+    localStorage.setItem("background_color", background_color);
     localStorage.setItem("multiplier", multiplier);
     localStorage.setItem("control", control);                    //STORAGE
     localStorage.setItem("money", money);
@@ -69,6 +68,12 @@ document.getElementById("high").style.visibility = "hidden";
 document.getElementById("tryagain").style.visibility = "hidden";
 document.getElementById("multi").style.visibility = "hidden";
 
+var rotate_interval = setInterval(rotate_background,100);
+function rotate_background(){
+    
+    angle+=5;
+    $("body").css("background", 'linear-gradient('+ angle + 'deg,'+ background_color + ', #525252)');
+}
 
 
 if(money == 0){                               //IF you exited the app after game over
@@ -113,6 +118,11 @@ $("#new_game").click(function ()
     highest_multiplier = 2;
     control2 = 1;
     
+    clearInterval(rotate_interval);                         //  BACKGROUND ROTATION
+    rotate_interval = 0;
+    background_color = "#3d72b4";
+    rotate_interval = setInterval(rotate_background,100);
+    
     document.getElementById("money").innerHTML = "money " + money;     //HTML
     document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
     document.getElementById("random1").innerHTML = "";
@@ -136,6 +146,7 @@ $("#new_game").click(function ()
     localStorage.setItem("current_wins", current_wins);
     localStorage.setItem("current_fails", current_fails);
     localStorage.setItem("control2",control2);
+    localStorage.setItem("background_color", background_color);
 });
 
 $("#low").click(function low()
@@ -284,10 +295,11 @@ $("#tryagain").click(function()
     money += stake;
     stake = 0;
     
-    clearInterval(abc);
-    abc = 0;
-    background = "#3d72b4";
-    abc = setInterval(funkcija,100);
+    clearInterval(rotate_interval);                         //BACKGROUND ROTATION
+    rotate_interval = 0;
+    background_color = "#3d72b4";
+    rotate_interval = setInterval(rotate_background,100);
+    localStorage.setItem("background_color", background_color);
 
 
     document.getElementById("stake").innerHTML = stake;        //HTML
@@ -308,7 +320,7 @@ $("#tryagain").click(function()
     
 });
 
-$("#multi").click(function()
+$("#multi").click(function multi()
 {
 
    
@@ -322,24 +334,25 @@ $("#multi").click(function()
     multiplier *=2;                                            //VARIABLES
     localStorage.setItem("multiplier", multiplier);
     switch(multiplier){
-        case 4: clearInterval(abc);
-                abc = 0;
-                background = "cyan";
+        case 4: clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "cyan";
                 break;
-        case 8: clearInterval(abc);
-                abc = 0;
-                background = "lime";
+        case 8: clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "lime";
                 break;
-        case 16:clearInterval(abc);
-                abc = 0;
-                background = "orange";
+        case 16:clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "orange";
                 break;
-        case 32:clearInterval(abc);
-                abc = 0;
-                background = "yellow";
+        case 32:clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "yellow";
                 break;
     }
-    abc = setInterval(funkcija,100);
+    rotate_interval = setInterval(rotate_background,100);
+    localStorage.setItem("background_color", background_color);
     
     if( multiplier > highest_multiplier){
         highest_multiplier = multiplier;
