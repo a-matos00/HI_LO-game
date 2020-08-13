@@ -29,9 +29,5 @@
   <preference name="android-minSdkVersion" value="19" />
 </platform>
 
- <edit-config file="AndroidManifest.xml" mode="merge"
-                 target="/manifest/application/activity">
-        <activity android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-    </edit-config>
  
 </widget>
