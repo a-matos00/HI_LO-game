@@ -5,7 +5,7 @@ var money = 0;                  //GLOBAL VARIABLES
 var multiplier = 2;
 var stake = 0;
 var control = localStorage.getItem("control");
-
+var control3 = 1;
 var angle = 180;
 var background_color = localStorage.getItem("background_color");
 
@@ -33,7 +33,7 @@ control2 = localStorage.getItem("control2");
 stake = localStorage.getItem("stake");
 money = localStorage.getItem("money");
 multiplier = localStorage.getItem("multiplier");
-
+highscore = localStorage.getItem("highscore");
 
 
 document.getElementById("money").innerHTML = "money " + money;                       //HTML
@@ -71,19 +71,24 @@ function timer(){
 				document.getElementById("multi").style.visibility = "hidden";
 				document.getElementById("random1").innerHTML = "";
 				document.getElementById("random2").innerHTML = "";
-               
+				
+				temp = money;
+				if( highscore < temp){
+						highscore = money;
+						localStorage.setItem("highscore", highscore);
+						document.getElementById("highscore").innerHTML = highscore;
+				}
 	}
 }
 
 
-if(money == 0){                               //IF you exited the app after game over
-    $("#start").css("visibility","hidden");
-    $("#message").text("Game over");
-}
+
 
 function start()
 {
-	
+		control3 = 1;
+		time = 30;
+		document.getElementById("random1").innerHTML = time;
         random1 = Math.floor(Math.random() * 10) + 1;                //VARIABLES
     
         if( (random1 == 1) || (random1 == 10) ){
@@ -113,12 +118,10 @@ function new_game()
     money = 0;                                                    //VARIABLES
     multiplier = 2;
     stake = 0;
-    current_tries = 0;
-    current_wins = 0;
-    current_fails = 0;
-    highest_multiplier = 2;
     control2 = 1;
-    
+    control3 = 0;
+	
+	
     clearInterval(rotate_interval);                         //  BACKGROUND ROTATION
     rotate_interval = 0;
     background_color = "#3d72b4";
@@ -145,6 +148,7 @@ function new_game()
 
     localStorage.setItem("control2",control2);
     localStorage.setItem("background_color", background_color);
+	clearInterval(timer_interval); //mora bit na dnu
 }
 
 function low()
@@ -402,11 +406,13 @@ function stats()
     $("#stats_page").css("visibility", "visible");          //STATS VISIBILITY
     $("#stats_page").css("position", "relative");
     $("#stats_page").css("z-index", "1");
+	
+	document.getElementById("highscore").innerHTML = "Highscore: " + highscore;
 }
 
 function index()
 {   
-    control++;
+    control++; //???
     
     if( control2 != 1){
         $("#start").css("visibility","hidden");
@@ -424,8 +430,8 @@ function index()
     $("#stats_page").css("visibility", "hidden");          //STATS VISIBILITY
     $("#stats_page").css("position", "absolute");
     $("#stats_page").css("z-index", "0");
-$("#random1").css("visibility", "visible");
-  $("#random1").text("");
+	$("#random1").css("visibility", "visible");
+	$("#random1").text("");
 }
    
    
