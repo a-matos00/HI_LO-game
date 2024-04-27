@@ -16,8 +16,9 @@
     <author href="https://YourWebsite.com" email="yourEmail@goesHere.com">
         Name Of The Author
     </author>
+
+<preference name="Fullscreen" value="true" />
  <icon src="icon.png" />
- <splash src="splash.png" />
  <preference name="orientation" value="portrait" />
  <preference name="fullscreen" value="true" />
  <preference name="KeepRunning" value="true"/>
@@ -27,5 +28,6 @@
   <preference name="orientation" value="portrait" />
   <preference name="android-minSdkVersion" value="19" />
 </platform>
+
  
 </widget>

@@ -1,55 +1,39 @@
-
+var time = 30;
+var highscore = 0;
 var control2 = 0; //new game control
-var money = 100;                  //GLOBAL VARIABLES
+var money = 0;                  //GLOBAL VARIABLES
 var multiplier = 2;
 var stake = 0;
-var total_tries = 0;
-var current_tries = 0;
-var total_wins = 0;
-var current_wins = 0;
-var total_fails = 0;
-var current_fails = 0;
-var success_rate = 0;
-var total_success_rate = 0;
-var highest_multiplier = 2;
-var total_highest_multiplier = 2;
 var control = localStorage.getItem("control");
+var control3 = 1;
+var angle = 180;
+var background_color = localStorage.getItem("background_color");
+
+
 
 if(control == null || NaN || undefined){                    //FIRST GAME CHECK
     control++;                                                          //VARIABLES
-
+    background_color = "#3d72b4";
+    
     document.getElementById("message").innerHTML = "Start New Game";   //HTML
     
     document.getElementById("start").style.visibility = "hidden";     //CSS
 
+    localStorage.setItem("background_color", background_color);
     localStorage.setItem("multiplier", multiplier);
     localStorage.setItem("control", control);                    //STORAGE
     localStorage.setItem("money", money);
     localStorage.setItem("stake", stake);
-    localStorage.setItem("total_tries", total_tries);
-    localStorage.setItem("current_tries", current_tries);
-    localStorage.setItem("total_wins", total_wins);
-    localStorage.setItem("current_wins", current_wins);
-    localStorage.setItem("total_fails", total_fails);
-    localStorage.setItem("current_fails", current_fails);
-    localStorage.setItem("success_rate", success_rate);
-    localStorage.setItem("total_success_rate", total_success_rate);
-    localStorage.setItem("highest_multiplier", highest_multiplier);
-    localStorage.setItem("total_highest_multiplier", total_highest_multiplier);
+	localStorage.setItem("highscore", highscore);
+    
 
 }
 control2 = localStorage.getItem("control2");
-total_tries = localStorage.getItem("total_tries");           //get values from local storage on load
-current_tries = localStorage.getItem("current_tries");
-total_wins = localStorage.getItem("total_wins");
-current_wins = localStorage.getItem("current_wins");
-total_fails = localStorage.getItem("total_fails");
-current_fails = localStorage.getItem("current_fails");
+
 stake = localStorage.getItem("stake");
 money = localStorage.getItem("money");
 multiplier = localStorage.getItem("multiplier");
-highest_multiplier = localStorage.getItem("highest_multiplier");
-total_highest_multiplier = localStorage.getItem("total_highest_multiplier");
+highscore = localStorage.getItem("highscore");
 
 
 document.getElementById("money").innerHTML = "money " + money;                       //HTML
@@ -61,48 +45,87 @@ document.getElementById("high").style.visibility = "hidden";
 document.getElementById("tryagain").style.visibility = "hidden";
 document.getElementById("multi").style.visibility = "hidden";
 
-
-
-if(money == 0){                               //IF you exited the app after game over
-    $("#start").css("visibility","hidden");
-    $("#message").text("Game over");
+var rotate_interval = setInterval(rotate_background,100);
+function rotate_background(){
+    
+    angle+=5;
+    $("body").css("background", 'linear-gradient('+ angle + 'deg,'+ background_color + ', #525252)');
 }
 
-$("#start").click(function start()
-{
 
-        random1 = Math.floor(Math.random() * 10) + 1;               
+function timer(){
     
-        if( (random1 == 1) || (random1 == 10)){
-        start();
+    time -= 1;
+    document.getElementById("time").innerHTML = time;
+	
+	if( time == 0){
+			clearInterval(timer_interval);
+			clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "red";
+				rotate_interval = setInterval(rotate_background,100);
+				document.getElementById("message").innerHTML = "time is up!!! score is " + money;
+				document.getElementById("high").style.visibility = "hidden";
+				document.getElementById("low").style.visibility = "hidden";
+				document.getElementById("tryagain").style.visibility = "hidden";
+				document.getElementById("multi").style.visibility = "hidden";
+				document.getElementById("random1").innerHTML = "";
+				document.getElementById("random2").innerHTML = "";
+				
+				temp = money;
+				if( highscore < temp){
+						highscore = money;
+						localStorage.setItem("highscore", highscore);
+						document.getElementById("highscore").innerHTML = highscore;
+				}
+	}
+}
+
+
+
+
+function start()
+{
+		control3 = 1;
+		time = 30;
+		document.getElementById("random1").innerHTML = time;
+        random1 = Math.floor(Math.random() * 10) + 1;                //VARIABLES
+    
+        if( (random1 == 1) || (random1 == 10) ){
+			start();
         return;
         }
-    
-        money -= 10;
-   
-
+		
+		timer_interval = setInterval(timer,1000);
+		
         document.getElementById("random1").innerHTML = random1;          //HTML
-        document.getElementById("money").innerHTML = money;
+        document.getElementById("money").innerHTML = "money " + money;
+        document.getElementById("stake").innerHTML = "+" + stake;
         document.getElementById("message").innerHTML = "Higher or lower?";
     
         document.getElementById("start").style.visibility = "hidden";   //CSS
         document.getElementById("low").style.visibility = "visible";
         document.getElementById("high").style.visibility = "visible";
+        document.getElementById("message").style.fontSize = "35px";
     
     
     
-});
+}
 
-$("#new_game").click(function ()
+function new_game()
 {
-    money = 100;                                                    //VARIABLES
+	time = 30;
+    money = 0;                                                    //VARIABLES
     multiplier = 2;
     stake = 0;
-    current_tries = 0;
-    current_wins = 0;
-    current_fails = 0;
-    highest_multiplier = 2;
     control2 = 1;
+    control3 = 0;
+	
+	
+    clearInterval(rotate_interval);                         //  BACKGROUND ROTATION
+    rotate_interval = 0;
+    background_color = "#3d72b4";
+    rotate_interval = setInterval(rotate_background,100);
     
     document.getElementById("money").innerHTML = "money " + money;     //HTML
     document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
@@ -121,21 +144,21 @@ $("#new_game").click(function ()
                   
     localStorage.setItem("money", money);               // STORAGE
     localStorage.setItem("multiplier", multiplier);
-    localStorage.setItem("highest_multiplier", highest_multiplier);
     localStorage.setItem("stake", stake);
-    localStorage.setItem("current_tries", current_tries); 
-    localStorage.setItem("current_wins", current_wins);
-    localStorage.setItem("current_fails", current_fails);
-    localStorage.setItem("control2",control2);
-});
 
-$("#low").click(function low()
+    localStorage.setItem("control2",control2);
+    localStorage.setItem("background_color", background_color);
+	clearInterval(timer_interval); //mora bit na dnu
+}
+
+function low()
 {
     
     random2 = Math.floor(Math.random() * 10) + 1;                      //VARIABLES
 
     document.getElementById("random2").innerHTML = random2;             //HTML
     document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
+    
     
     document.getElementById("tryagain").style.visibility = "visible";     //CSS
     $(".hi_lo").css("visibility","hidden");
@@ -149,8 +172,6 @@ $("#low").click(function low()
     else if( random2 < random1){
         
         stake = 10 * multiplier;                                         //VARIABLES
-        current_wins++;
-        total_wins++;
         
         document.getElementById("message").innerHTML = "success";        //HTML
         document.getElementById("tryagain").innerHTML = "CASH IN";
@@ -161,10 +182,9 @@ $("#low").click(function low()
         
            
     }
-    else if( (random2 > random1) && (money != 0) ){
+    else if( random2 > random1){
         stake = 0;                                                  //VARIABLES
-        current_fails++;
-        total_fails++;
+        
         document.getElementById("message").innerHTML = "fail";          //HTML
         document.getElementById("stake").innerHTML = stake;
         document.getElementById("tryagain").innerHTML = "try again";
@@ -172,10 +192,9 @@ $("#low").click(function low()
         localStorage.setItem("stake", stake);                       //STORAGE
     
     }
-    else if( (random2 > random1) && (money == 0) ){
+    else if( random2 > random1){
         stake = 0;                                                  //VARIABLES
-        current_fails++;
-        total_fails++;
+        
         document.getElementById("message").innerHTML = "Game over";          //HTML
         document.getElementById("stake").innerHTML = stake;
         document.getElementById("tryagain").innerHTML = "try again";
@@ -184,27 +203,24 @@ $("#low").click(function low()
 
         localStorage.setItem("stake", stake);                       //STORAGE
     }
-    current_tries++;
-    total_tries++;
     
-    document.getElementById("money").innerHTML = money;         //HTML
+    
+    document.getElementById("money").innerHTML = "money " + money;
+     document.getElementById("stake").innerHTML = "+" + stake;         //HTML
 
-     localStorage.setItem("total_tries", total_tries);        //STORAGE
-     localStorage.setItem("current_tries", current_tries);
-     localStorage.setItem("money", money);
-     localStorage.setItem("current_wins", current_wins);
-     localStorage.setItem("total_wins", total_wins);
-     localStorage.setItem("current_fails", current_fails);
-     localStorage.setItem("total_fails", total_fails);
-});
+    
+     localStorage.setItem("money", money); //STORAGE
+     
+}
 
-$("#high").click(function high()
+function high()
 {
     
     random2 = Math.floor(Math.random() * 10) + 1;                      //VARIABLES
 
     document.getElementById("random2").innerHTML = random2;             //HTML
     document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
+    
     
     document.getElementById("tryagain").style.visibility = "visible";     //CSS
     $(".hi_lo").css("visibility","hidden");
@@ -215,11 +231,10 @@ $("#high").click(function high()
         return;         //stops the current function which generated a random2 equal to random1
     }
     
-    else if( random2 > random1){
+    else if( random2 > random1 ){
         
         stake = 10 * multiplier;                                         //VARIABLES
-        current_wins++;
-        total_wins++;
+        
         
         document.getElementById("message").innerHTML = "success";        //HTML
         document.getElementById("tryagain").innerHTML = "CASH IN";
@@ -230,10 +245,9 @@ $("#high").click(function high()
         
            
     }
-    else if( (random2 < random1) && (money != 0) ){
+    else if( random2 < random1 ){
         stake = 0;                                                  //VARIABLES
-        current_fails++;
-        total_fails++;
+        
         document.getElementById("message").innerHTML = "fail";          //HTML
         document.getElementById("stake").innerHTML = stake;
         document.getElementById("tryagain").innerHTML = "try again";
@@ -241,10 +255,9 @@ $("#high").click(function high()
         localStorage.setItem("stake", stake);                       //STORAGE
     
     }
-    else if( (random2 < random1) && (money == 0) ){
+    else if( random2 < random1){
         stake = 0;                                                  //VARIABLES
-        current_fails++;
-        total_fails++;
+        
         document.getElementById("message").innerHTML = "Game over";          //HTML
         document.getElementById("stake").innerHTML = stake;
         document.getElementById("tryagain").innerHTML = "try again";
@@ -253,48 +266,67 @@ $("#high").click(function high()
 
         localStorage.setItem("stake", stake);                       //STORAGE
     }
-    current_tries++;
-    total_tries++;
     
-    document.getElementById("money").innerHTML = money;         //HTML
+    
+     document.getElementById("money").innerHTML = "money " + money;
+     document.getElementById("stake").innerHTML = "+" + stake;         //HTML
 
-     localStorage.setItem("total_tries", total_tries);        //STORAGE
-     localStorage.setItem("current_tries", current_tries);
+     
      localStorage.setItem("money", money);
-     localStorage.setItem("current_wins", current_wins);
-     localStorage.setItem("total_wins", total_wins);
-     localStorage.setItem("current_fails", current_fails);
-     localStorage.setItem("total_fails", total_fails);
-});
+     
+}
 
 
 
-$("#tryagain").click(function()
+function tryagain()
 {
+	
+	random1 = Math.floor(Math.random() * 10) + 1;                //VARIABLES
+    
+	if( (random1 == 1) || (random1 == 10)){
+		tryagain();
+		return;
+        }
+		
     multiplier = 2;                 //VARIABLES
     money += stake;
     stake = 0;
     
-    document.getElementById("stake").innerHTML = stake;        //HTML
-    document.getElementById("money").innerHTML = money;
+    clearInterval(rotate_interval);                         //BACKGROUND ROTATION
+    rotate_interval = 0;
+    background_color = "#3d72b4";
+    rotate_interval = setInterval(rotate_background,100);
+    localStorage.setItem("background_color", background_color);
+	
+	
+
+	document.getElementById("random1").innerHTML = random1; 
+    document.getElementById("money").innerHTML = "money " + money;        //HTML
+    document.getElementById("stake").innerHTML = "+" + stake;
     document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";
-    document.getElementById("random1").innerHTML = "";
+    
     document.getElementById("random2").innerHTML = "";
-    document.getElementById("message").innerHTML = "Message";
+    document.getElementById("message").innerHTML = "Press start";
     document.getElementById("tryagain").innerHTML = "try again";
 
-    document.getElementById("start").style.visibility = "visible";       //CSS
+          //CSS
     $(".try_multi").css("visibility","hidden");
+	document.getElementById("high").style.visibility = "visible";
+	document.getElementById("low").style.visibility = "visible";
+	document.getElementById("random1").style.visibility = "visible";
+	document.getElementById("random2").style.visibility = "visible";
 
     localStorage.setItem("multiplier", multiplier);      //STORAGE
     localStorage.setItem("money", money);
     localStorage.setItem("stake", stake);
     
     
-});
+}
 
-$("#multi").click(function()
+function multi()
 {
+
+   
     random1 = Math.floor(Math.random() * 10) + 1;
     if( (random1 == 1) || (random1 == 10)){
         multi();
@@ -305,42 +337,60 @@ $("#multi").click(function()
     multiplier *=2;                                            //VARIABLES
     localStorage.setItem("multiplier", multiplier);
     switch(multiplier){
-        case 4: $("body").css("background", "linear-gradient(35deg,cyan, #525252)");
+        case 4: clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "cyan";
                 break;
-        case 8:$("body").css("background", "linear-gradient(35deg,lime, #525252)");
+        case 8: clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "lime";
                 break;
-        case 16:$("body").css("background", "linear-gradient(35deg,orange, #525252)");
+        case 16:clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "red";
                 break;
-        case 32:$("body").css("background", "linear-gradient(35deg,yellow, #525252)");
+        case 32:clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "orange";
                 break;
-    }
-    
-    if( multiplier > highest_multiplier){
-        highest_multiplier = multiplier;
-        localStorage.setItem("highest_multiplier", highest_multiplier);
-    }
+         case 64:clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "yellow";
+                break;
+         case 128:clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "#ff0385";
+                break;
 
-    if( highest_multiplier > total_highest_multiplier){
-        total_highest_multiplier = highest_multiplier;
-         localStorage.setItem("total_highest_multiplier", total_highest_multiplier);
+         case 256:clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "#ffa8a8";
+                break;
+        default:clearInterval(rotate_interval);
+                rotate_interval = 0;
+                background_color = "#ffa8a8";
+                break;
     }
-    
+    rotate_interval = setInterval(rotate_background,100);
+    localStorage.setItem("background_color", background_color);
     
     document.getElementById("multiplier").innerHTML = "multiplier " + multiplier + "X";     //HTML
     document.getElementById("random1").innerHTML = random1;
     document.getElementById("random2").innerHTML = "";
-    document.getElementById("money").innerHTML = money; 
+    document.getElementById("money").innerHTML = "money " + money;
+    document.getElementById("stake").innerHTML = "+" + stake;
+    document.getElementById("message").innerHTML = "multiplier "+ multiplier + "X";
+    
 
     $(".hi_lo").css("visibility","visible");         //CSS
     $(".try_multi").css("visibility","hidden");
    }
     
-});
+}
 
-$("#stats_button").click(function()
+function stats()
 {
-    success_rate = Math.round((current_wins / current_tries)*100);
-    total_success_rate = Math.round((total_wins / total_tries)*100);
+    
     $("#start").css("visibility","hidden");                  //INDEX VISIBILITY
     $("#new_game").css("visibility","hidden");
     $(".hi_lo").css("visibility","hidden");
@@ -350,37 +400,20 @@ $("#stats_button").click(function()
     $("#index_page").css("position", "absolute");
     $("#index_page").css("top", "1px");
     $("#index_page").css("z-index", "0");
+	 $("#random1").css("visibility", "hidden");
     
     
     $("#stats_page").css("visibility", "visible");          //STATS VISIBILITY
     $("#stats_page").css("position", "relative");
     $("#stats_page").css("z-index", "1");
+	
+	document.getElementById("highscore").innerHTML = "Highscore: " + highscore;
+}
 
-    $("#current_tries").text("Current tries: " + current_tries);  //HTML
-    $("#total_tries").text("Total tries: " + total_tries);
-    $("#total_wins").text("Total wins: " + total_wins);
-    $("#total_fails").text("Total fails: " + total_fails);
-    $("#current_wins").text("Current wins: " + current_wins);
-    $("#current_fails").text("Current fails: " + current_fails);
-    $("#success_rate").text("Success rate: " + success_rate + "%");
-    $("#total_success_rate").text("All time success rate: " + total_success_rate + "%");
-    $("#current_highest_mutiplier").text("Current highest multiplier: " + highest_multiplier );
-    $("#total_highest_mutiplier").text("All time highest multiplier: " + total_highest_multiplier );
-
-
-});
-
-$("#index_button").click(function()
+function index()
 {   
-    control++;
-    if(money != 0 || money < 0){                                 //START BUTTON IS NOT AVALIABLE IF THE GAME IS OVER
-        $("#start").css("visibility","visible");                 
-        
-    }
-    else{
-        $("#start").css("visibility","hidden");
-    }
-
+    control++; //???
+    
     if( control2 != 1){
         $("#start").css("visibility","hidden");
     }
@@ -397,9 +430,9 @@ $("#index_button").click(function()
     $("#stats_page").css("visibility", "hidden");          //STATS VISIBILITY
     $("#stats_page").css("position", "absolute");
     $("#stats_page").css("z-index", "0");
-
-  
-});
+	$("#random1").css("visibility", "visible");
+	$("#random1").text("");
+}
    
    
 

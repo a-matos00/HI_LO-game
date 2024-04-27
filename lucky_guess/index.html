@@ -18,16 +18,10 @@
     </header>
 
     <div id = "stats">
-        <div class = "stats" id = "total_tries">Total tries:</div>
-        <div class = "stats" id = "total_wins">total correct guesses:</div>
-        <div class = "stats" id = "total_fails">total wrong guesses:</div>
-        <div class = "stats" id = "current_tries">Current tries:</div> 
-        <div class = "stats" id = "current_wins">current wins:</div> 
-        <div class = "stats" id = "current_fails">current fails:</div> 
-        <div class = "stats" id = "success_rate">Success_rate:</div> 
+        <div class = "stats" id = "highscore">Highest score: </div>
 
     </div>
-    <button id = "index_button">back to game</button>
+    <button id = "index_button" onclick="index()">back to game</button>
     </div>
     
     <div id = index_page>
@@ -37,7 +31,10 @@
     <div id = "multiplier"></div>
     </header>
     
-    <div id = "stake"></div>
+	<div id = "stake_time">
+		<div id = "stake"></div>
+		<div id = "time">time</div>
+	</div>
 
     <div id = "message">PRESS START</div>
     
@@ -48,15 +45,15 @@
     </main>
 
     <div id = "button_container">
-    <button id = "start">START</button>
+    <button id = "start" onclick="start()">START</button>
     
-    <button class = "hi_lo" id = "high">HIGH</button>
-    <button class = "hi_lo" id = "low">LOW</button>
+    <button class = "hi_lo" id = "high" onclick="high()">HIGH</button>
+    <button class = "hi_lo" id = "low" onclick="low()">LOW</button>
    
-    <button class = "try_multi" id = "tryagain">try again</button>
-    <button class = "try_multi" id = "multi">multi</button>
-    <button id = "new_game">NEW GAME</button>
-    <button id = "stats_button">STATS</button>
+    <button class = "try_multi" id = "tryagain" onclick="tryagain()">TRY AGAIN</button>
+    <button class = "try_multi" id = "multi" onclick = "multi()" >2X BET</button>
+    <button id = "new_game" onclick="new_game()">NEW GAME</button>
+    <button id = "stats_button" onclick="stats()">STATS</button>
     </div>
     
     </div>
