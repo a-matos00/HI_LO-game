@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<link rel="stylesheet" href="guess.css">
+<script type="text/javascript" src="jquery.js"></script>
+</head>
+
+
+<body>
+<div id="success_rate">Sucess rate</div>
+<div id="money_div">
+<span id="money"></span><img src="coin_pixel.png">
+</div>
+
+<div id="message">Pick a number!</div>
+
+<div id="display_pick">
+<div id="your_pick"></div>
+<div id="random_pick"></div>
+</div>
+
+<div id="pick_text_div">
+<div id="your_pick_text" class="text_pick">Your pick</div>
+<div id="random_pick_text" class="text_pick">Random pick</div>
+</div>
+
+<div id="number_grid">
+<button class="grid_number_buttons" id="1">1</button>
+<button class="grid_number_buttons" id="2">2</button>
+<button class="grid_number_buttons" id="3">3</button>
+<button class="grid_number_buttons" id="4">4</button>
+<button class="grid_number_buttons" id="5">5</button>
+<button class="grid_number_buttons" id="6">6</button>
+<button class="grid_number_buttons" id="7">7</button>
+<button class="grid_number_buttons" id="8">8</button>
+<button class="grid_number_buttons" id="9">9</button>
+</div>
+
+<div id="start_reset">
+<button class="start_reset" id="high">high</button>
+<button class="start_reset" id="low">low</button>
+
+</div>
+<button id="reset"  class="start_reset">Try again</button>
+
+
+<div id="bet_amount">Bet amount</div>
+<div id="bets">
+<button class="bet" id="bet_1" >1</button>
+<button class="bet" id="bet_5">5</button>
+<button class="bet" id="bet_10">10</button>
+<button class="bet" id="bet_25">25</button>
+<button class="bet" id="bet_50">50</button>
+</div>
+<button id="new_game">New game</button>
+
+ <audio class="audio" id="fail_sound" controls>
+  <source src="fail.mp3" type="audio/ogg">
+</audio>
+
+ <audio class="audio" id="win_sound" controls>
+  <source src="win.mp3" type="audio/ogg">
+</audio> 
+
+</body>
+
+<script src="guess.js"></script>
+<script src="bets.js"></script>
+<script src="numbers.js"></script>
+</html> 

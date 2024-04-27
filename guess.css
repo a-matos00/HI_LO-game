@@ -1,0 +1,202 @@
+.audio{
+	height:0px;
+	visibility:hidden;
+}
+
+.bet{
+	background-color:white;
+	border:solid;
+	border-color:black;
+	font-family:mojfont;
+	font-size:24px;
+	height:100%;
+	width:100%;
+}
+
+#bets{
+	background-color:blue;
+	display:grid;
+	height:50px;
+	width:100%;
+	grid-template-areas:
+    "a b c d e";
+}
+
+ #bet_amount{
+	text-align:center;
+	
+}
+
+body {
+	background-color: #4cc0ff;
+	display:grid;
+	font-family:mojfont;
+	height:100%;
+    margin:0;
+    width:100%;
+ }
+ 
+ #confirm_start{
+	display:grid;
+	height:50px;
+	grid-template-areas:
+	"a b";
+	margin-left:5%;
+	margin-right:5%;
+}
+
+.confirm_start_buttons{
+	background-color:green;
+	width:100%;
+	
+}
+
+#display_pick{
+	background-color:yellow;
+	height:50px;
+	display:grid;
+	grid-template-areas:
+	"a b";
+}
+
+#fail_sound{
+	width:50px;
+	
+}
+
+
+@font-face {
+  font-family: mojfont;
+  src: url(mojfont.ttf);
+}
+
+#game_title{
+	 height:70px;
+	 text-align:center;
+	 font-size:30px;
+	 background-color:#e1bc29;
+}
+
+.grid_number_buttons{
+	background:transparent;
+	border:solid;
+	border-color:black;
+	font-family:mojfont;
+	font-size:30px;
+}
+
+#high{
+	background-color:green;
+    font-size:30px;
+}
+
+img{
+	height:28px;
+	width:28px;
+
+}
+
+#low{
+	background-color:red;
+	font-size:30px;
+}
+
+
+
+#message{
+	 background-color:white;
+	 font-size:30px;
+	 height:50px;
+	 text-align:center;
+
+}
+
+#money_div{
+	 font-size:36px;
+	 height:50px;
+	 text-align:center;
+}
+
+
+ #number_grid{
+  background-color:#266dd3;	
+  display:grid;
+  font-size:30px;
+  grid-template-areas:
+  "one two three"
+  "four five six"
+  "seven eight nine"; 
+  height:300px;  
+  width:100%;
+ }
+ 
+
+#pick_text_div{
+	background-color:yellow;
+	display:grid;
+	height:50px;
+	grid-template-areas:
+	"c d";
+}
+
+#random_pick{
+	background-color:white;
+	font-size:30px;
+	text-align:center;
+	
+}
+
+#random_pick_text{
+	background-color:white;
+	text-align:center;	
+}
+
+
+#reset{
+	background-color:lightgreen;
+	height:100px;
+	text-align:center;
+	visibility:hidden;
+}
+
+
+#start_reset{
+	height:50px;
+	
+	display:grid;
+	grid-template-areas:
+	"c d";
+	height:100px;
+}
+.start_reset{
+	background-color:blue;
+	border:solid;
+	font-family:mojfont;
+}
+
+#success_rate{
+	height:5%;
+}
+
+#your_pick_text{
+	background-color:white;
+	text-align:center;
+	
+}
+
+#your_pick{
+	background-color:white;
+	text-align:center;
+	font-size:30px;
+}
+
+#win_sound{
+	width:50px;
+}
+
+
+
+
+
+
+
